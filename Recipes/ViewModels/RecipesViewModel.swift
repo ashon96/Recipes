@@ -8,7 +8,7 @@
 import Foundation
 
 class RecipesViewModel: ObservableObject {
-    @Published var meals = [Meal]()
+    @Published private(set) var meals = [Meal]()
     
     private let apiClient: APIClient
     
