@@ -24,4 +24,12 @@ extension Endpoint {
     var host: String {
         "themealdb.com/api/json/v1/1"
     }
+    
+    var header: [String : String]? {
+        nil
+    }
+    
+    var body: [String : String]? {
+        nil
+    }
 }

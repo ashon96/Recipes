@@ -25,12 +25,4 @@ extension RecipesEndpoint: Endpoint {
     var method: RequestMethod {
         .get
     }
-    
-    var header: [String : String]? {
-        nil
-    }
-    
-    var body: [String : String]? {
-        nil
-    }
 }
