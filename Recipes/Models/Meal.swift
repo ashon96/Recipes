@@ -12,7 +12,7 @@ struct Meal: Codable, Identifiable {
         idMeal
     }
 
-    var strMeal: String
-    var strMealThumb: String
-    var idMeal: String
+    let strMeal: String
+    let strMealThumb: String
+    let idMeal: String
 }
