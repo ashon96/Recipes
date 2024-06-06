@@ -8,11 +8,11 @@
 import Foundation
 
 struct Meal: Codable, Identifiable {
-    var strMeal: String
-    var strMealThumb: String
-    var idMeal: String
-    
     var id: String {
         idMeal
     }
+
+    var strMeal: String
+    var strMealThumb: String
+    var idMeal: String
 }
