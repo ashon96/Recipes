@@ -30,9 +30,9 @@ class RecipesViewModel: ObservableObject {
     }
     
     @MainActor
-    func getMealDetail(by id: String) async throws -> [MealDetail]? {
+    func getMealDetail(by id: String) async throws -> MealDetail? {
         do {
-            let fetchedMealDetail = try await apiClient.sendRequest(endpoint: RecipesEndpoint.mealDetail(id: id), responseModel: MealContainer<MealDetail>.self).meals
+            let fetchedMealDetail = try await apiClient.sendRequest(endpoint: RecipesEndpoint.mealDetail(id: id), responseModel: MealContainer<MealDetail>.self).meals.first
             return fetchedMealDetail
         } catch {
             print(error)
