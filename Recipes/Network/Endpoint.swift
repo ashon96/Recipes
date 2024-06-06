@@ -14,6 +14,7 @@ protocol Endpoint {
     var method: RequestMethod { get }
     var header: [String: String]? { get }
     var body: [String: String]? { get }
+    var queryItems: [URLQueryItem]? { get }
 }
 
 extension Endpoint {
@@ -22,7 +23,7 @@ extension Endpoint {
     }
     
     var host: String {
-        "themealdb.com/api/json/v1/1"
+        "themealdb.com"
     }
     
     var header: [String : String]? {

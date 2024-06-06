@@ -16,13 +16,24 @@ extension RecipesEndpoint: Endpoint {
     var path: String {
         switch self {
         case .meals:
-            "/filter.php?c=Dessert"
+            "/api/json/v1/1/filter.php" // ?c=Dessert
         case .mealDetail(let id):
-            "/lookup.php?i=\(id)"
+            "/api/json/v1/1/lookup.php?i=\(id)"
         }
     }
     
     var method: RequestMethod {
         .get
+    }
+    
+    var queryItems: [URLQueryItem]? {
+        switch self {
+        case .meals:
+            return [
+                .init(name: "c", value: "Dessert")
+            ]
+        default:
+            return nil
+        }
     }
 }

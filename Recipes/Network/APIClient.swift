@@ -14,18 +14,19 @@ protocol APIClient {
     ) async throws -> T
 }
 
-extension APIClient {
+class NetworkClient: APIClient {
     func sendRequest<T: Decodable>(
         endpoint: Endpoint,
         responseModel: T.Type
-    ) async -> Result<T, RequestError> {
+    ) async throws -> T {
         var urlComponents = URLComponents()
         urlComponents.scheme = endpoint.scheme
         urlComponents.host = endpoint.host
         urlComponents.path = endpoint.path
-        
+        urlComponents.queryItems = endpoint.queryItems
+                
         guard let url = urlComponents.url else {
-            return .failure(.invalidURL)
+            throw RequestError.invalidURL
         }
         
         var request = URLRequest(url: url)
@@ -36,25 +37,22 @@ extension APIClient {
             request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
         }
         
-        do {
-            let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
-            guard let response = response as? HTTPURLResponse else {
-                return .failure(.noResponse)
-            }
-            switch response.statusCode {
-            case 200...299:
-                guard let processedRes = try? JSONDecoder().decode(responseModel, from: data) else {
-                    return .failure(.decode)
-                }
-                return .success(processedRes)
-            case 401:
-                return .failure(.unauthorized)
-            default:
-                return .failure(.unexpectedStatusCode)
-            }
-        } catch {
-            return .failure(.unknown)
+        let (data, response) = try await URLSession.shared.data(for: request, delegate: nil)
+        guard let response = response as? HTTPURLResponse else {
+            throw RequestError.noResponse
         }
+        switch response.statusCode {
+        case 200...299:
+            guard let processedRes = try? JSONDecoder().decode(responseModel, from: data) else {
+                throw RequestError.decode
+            }
+            return processedRes
+        case 401:
+            throw RequestError.unauthorized
+        default:
+            throw RequestError.unexpectedStatusCode
+        }
+
     }
 }
 

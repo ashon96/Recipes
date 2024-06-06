@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var recipesViewModel = RecipesViewModel()
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                ForEach(recipesViewModel.meals) { meal in
+                    Text(meal.id)
+                }
+            }
         }
-        .padding()
+        .task {
+            await recipesViewModel.getMeals()
+        }
     }
 }
 

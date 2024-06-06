@@ -12,7 +12,7 @@ class RecipesViewModel: ObservableObject {
     
     private let apiClient: APIClient
     
-    init(apiClient: APIClient) {
+    init(apiClient: APIClient = NetworkClient()) {
         self.apiClient = apiClient
     }
     
