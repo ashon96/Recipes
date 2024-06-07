@@ -14,7 +14,7 @@ struct RecipesListView: View {
         List {
             ForEach(recipesViewModel.meals.sorted()) { meal in
                 NavigationLink {
-                    Text("TODO")
+                    RecipeDetailView(meal: meal)
                 } label: {
                     Text(meal.strMeal)
                 }

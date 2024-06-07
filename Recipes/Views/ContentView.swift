@@ -16,12 +16,12 @@ struct ContentView: View {
                 ProgressView()
             } else {
                 RecipesListView()
-                    .environmentObject(recipesViewModel)
             }
         }
         .task {
             await recipesViewModel.getMeals()
         }
+        .environmentObject(recipesViewModel)
     }
 }
 
