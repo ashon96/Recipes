@@ -14,15 +14,27 @@ enum RecipesEndpoint {
 
 extension RecipesEndpoint: Endpoint {
     var path: String {
+        let prefix = "/api/json/v1/1/"
         switch self {
         case .meals:
-            "/filter.php?c=Dessert"
+            return "\(prefix)filter.php"
         case .mealDetail(let id):
-            "/lookup.php?i=\(id)"
+            return "\(prefix)/lookup.php?i=\(id)"
         }
     }
     
     var method: RequestMethod {
         .get
+    }
+    
+    var queryItems: [URLQueryItem]? {
+        switch self {
+        case .meals:
+            return [
+                .init(name: "c", value: "Dessert")
+            ]
+        default:
+            return nil
+        }
     }
 }
