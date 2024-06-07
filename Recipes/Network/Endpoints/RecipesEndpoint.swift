@@ -14,11 +14,12 @@ enum RecipesEndpoint {
 
 extension RecipesEndpoint: Endpoint {
     var path: String {
+        let prefix = "/api/json/v1/1/"
         switch self {
         case .meals:
-            "/api/json/v1/1/filter.php" // ?c=Dessert
+            return "\(prefix)filter.php"
         case .mealDetail(let id):
-            "/api/json/v1/1/lookup.php?i=\(id)"
+            return "\(prefix)/lookup.php?i=\(id)"
         }
     }
     
