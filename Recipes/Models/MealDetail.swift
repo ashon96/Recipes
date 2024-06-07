@@ -83,4 +83,5 @@ struct MealDetail: Codable, Identifiable {
         
         return list
     }
+    
 }

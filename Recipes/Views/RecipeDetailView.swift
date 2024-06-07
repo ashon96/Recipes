@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct RecipeDetailView: View {
-    @EnvironmentObject var recipesViewModel: RecipesViewModel
+struct RecipeDetailView<VM>: View where VM: RecipesService {
+    @EnvironmentObject var recipesViewModel: VM
     let meal: Meal
     @State private var mealDetail: MealDetail?
 
@@ -48,6 +48,9 @@ struct RecipeDetailView: View {
     }
 }
 
-//#Preview {
-//    RecipeDetailView()
-//}
+#Preview {
+    RecipeDetailView<RecipesViewModel>(
+        meal: Meal(strMeal: "test 1", strMealThumb: "image 1", idMeal: "1")
+    )
+    .environmentObject(RecipesViewModel(apiClient: MockAPIClient()))
+}
