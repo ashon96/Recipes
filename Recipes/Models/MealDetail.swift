@@ -65,4 +65,22 @@ struct MealDetail: Codable, Identifiable {
     let strImageSource: String?
     let strCreativeCommonsConfirmed: String?
     let dateModified: String?
+    
+    var ingredientsList: [String] {
+        var list = [String]()
+        
+        let ingredients = Mirror(reflecting: self).children.filter { $0.label?.starts(with: "strIngredient") ?? false }
+        let measures = Mirror(reflecting: self).children.filter { $0.label?.starts(with: "strMeasure") ?? false }
+        
+        for (ingredient, measure) in zip(ingredients, measures) {
+            if let ingredientValue = ingredient.value as? String,
+               let measureValue = measure.value as? String,
+               !ingredientValue.isEmpty && !measureValue.isEmpty {
+                list.append("\(ingredientValue): \(measureValue)")
+            }
+        }
+        
+        
+        return list
+    }
 }

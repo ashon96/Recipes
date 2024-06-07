@@ -15,21 +15,29 @@ struct RecipeDetailView: View {
     var body: some View {
         ScrollView {
             if let mealDetail = mealDetail {
-                AsyncImage(url: URL(string: meal.strMealThumb)) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                    } else if phase.error != nil {
-                        Text("Failed to load image")
-                    } else {
-                        ProgressView()
+                VStack(spacing: 20) {
+                    RecipeImageView(imageLink: meal.strMealThumb)
+                    VStack {
+                        Text("Ingredients")
+                            .font(.title)
+                        ForEach(mealDetail.ingredientsList, id: \.self) { item in
+                            Text(item)
+                        }
+                    }
+                    
+                    VStack {
+                        Text("Instructions")
+                            .font(.title)
+                        Text(mealDetail.strInstructions)
+                            .padding(.horizontal, 10)
                     }
                 }
+                
             } else {
                 ProgressView()
             }
         }
+        .navigationTitle(meal.strMeal)
         .task {
             do {
                 mealDetail = try await recipesViewModel.getMealDetail(by: meal.id)
