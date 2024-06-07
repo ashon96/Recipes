@@ -12,12 +12,16 @@ struct ContentView: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(recipesViewModel.meals.sorted()) { meal in
-                    Text(meal.strMeal)
+            if recipesViewModel.meals.isEmpty {
+                ProgressView()
+            } else {
+                List {
+                    ForEach(recipesViewModel.meals.sorted()) { meal in
+                        Text(meal.strMeal)
+                    }
                 }
+                .navigationTitle("Recipes")
             }
-            .navigationTitle("Recipes")
         }
         .task {
             await recipesViewModel.getMeals()
