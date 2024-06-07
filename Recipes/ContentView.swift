@@ -17,7 +17,11 @@ struct ContentView: View {
             } else {
                 List {
                     ForEach(recipesViewModel.meals.sorted()) { meal in
-                        Text(meal.strMeal)
+                        NavigationLink {
+                            Text("TODO")
+                        } label: {
+                            Text(meal.strMeal)
+                        }
                     }
                 }
                 .navigationTitle("Recipes")
