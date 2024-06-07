@@ -18,8 +18,8 @@ extension RecipesEndpoint: Endpoint {
         switch self {
         case .meals:
             return "\(prefix)filter.php"
-        case .mealDetail(let id):
-            return "\(prefix)/lookup.php?i=\(id)"
+        case .mealDetail:
+            return "\(prefix)lookup.php"
         }
     }
     
@@ -33,8 +33,10 @@ extension RecipesEndpoint: Endpoint {
             return [
                 .init(name: "c", value: "Dessert")
             ]
-        default:
-            return nil
+        case .mealDetail(let id):
+            return [
+                .init(name: "i", value: id)
+            ]
         }
     }
 }

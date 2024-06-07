@@ -23,6 +23,9 @@
 		5A213A012C12723200B02CC9 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A002C12723200B02CC9 /* APIClient.swift */; };
 		5A213A032C12729400B02CC9 /* RequestError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A022C12729400B02CC9 /* RequestError.swift */; };
 		5A213A052C127B5700B02CC9 /* MealContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A042C127B5700B02CC9 /* MealContainer.swift */; };
+		5A213A082C1286BD00B02CC9 /* RecipesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A072C1286BD00B02CC9 /* RecipesListView.swift */; };
+		5A213A0A2C1287E900B02CC9 /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A092C1287E900B02CC9 /* RecipeDetailView.swift */; };
+		5A213A0C2C128B5300B02CC9 /* RecipeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A213A0B2C128B5300B02CC9 /* RecipeImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +65,9 @@
 		5A213A002C12723200B02CC9 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5A213A022C12729400B02CC9 /* RequestError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestError.swift; sourceTree = "<group>"; };
 		5A213A042C127B5700B02CC9 /* MealContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealContainer.swift; sourceTree = "<group>"; };
+		5A213A072C1286BD00B02CC9 /* RecipesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesListView.swift; sourceTree = "<group>"; };
+		5A213A092C1287E900B02CC9 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		5A213A0B2C128B5300B02CC9 /* RecipeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,11 +118,10 @@
 		5A2139C52C1269E600B02CC9 /* Recipes */ = {
 			isa = PBXGroup;
 			children = (
+				5A213A062C12868700B02CC9 /* Views */,
 				5A2139F82C126FE400B02CC9 /* Network */,
 				5A2139F52C126F4100B02CC9 /* ViewModels */,
 				5A2139F02C126AA100B02CC9 /* Models */,
-				5A2139C62C1269E700B02CC9 /* RecipesApp.swift */,
-				5A2139C82C1269E700B02CC9 /* ContentView.swift */,
 				5A2139CA2C1269E800B02CC9 /* Assets.xcassets */,
 				5A2139CC2C1269E800B02CC9 /* Preview Content */,
 			);
@@ -184,6 +189,18 @@
 				5A2139FE2C1270F500B02CC9 /* RecipesEndpoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		5A213A062C12868700B02CC9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5A2139C62C1269E700B02CC9 /* RecipesApp.swift */,
+				5A2139C82C1269E700B02CC9 /* ContentView.swift */,
+				5A213A072C1286BD00B02CC9 /* RecipesListView.swift */,
+				5A213A092C1287E900B02CC9 /* RecipeDetailView.swift */,
+				5A213A0B2C128B5300B02CC9 /* RecipeImageView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,6 +335,8 @@
 			files = (
 				5A2139C92C1269E700B02CC9 /* ContentView.swift in Sources */,
 				5A213A052C127B5700B02CC9 /* MealContainer.swift in Sources */,
+				5A213A0C2C128B5300B02CC9 /* RecipeImageView.swift in Sources */,
+				5A213A0A2C1287E900B02CC9 /* RecipeDetailView.swift in Sources */,
 				5A2139F42C126DBD00B02CC9 /* MealDetail.swift in Sources */,
 				5A2139F72C126F5100B02CC9 /* RecipesViewModel.swift in Sources */,
 				5A2139F22C126AAE00B02CC9 /* Meal.swift in Sources */,
@@ -326,6 +345,7 @@
 				5A213A032C12729400B02CC9 /* RequestError.swift in Sources */,
 				5A2139FC2C12703E00B02CC9 /* RequestMethod.swift in Sources */,
 				5A2139FA2C126FED00B02CC9 /* Endpoint.swift in Sources */,
+				5A213A082C1286BD00B02CC9 /* RecipesListView.swift in Sources */,
 				5A2139C72C1269E700B02CC9 /* RecipesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

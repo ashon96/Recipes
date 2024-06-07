@@ -8,24 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject var recipesViewModel = RecipesViewModel()
+    @StateObject private var recipesViewModel = RecipesViewModel()
 
     var body: some View {
         NavigationStack {
             if recipesViewModel.meals.isEmpty {
                 ProgressView()
             } else {
-                List {
-                    ForEach(recipesViewModel.meals.sorted()) { meal in
-                        Text(meal.strMeal)
-                    }
-                }
-                .navigationTitle("Recipes")
+                RecipesListView()
             }
         }
         .task {
             await recipesViewModel.getMeals()
         }
+        .environmentObject(recipesViewModel)
     }
 }
 
