@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct RecipesListView: View {
-    @EnvironmentObject var recipesViewModel: RecipesViewModel
+struct RecipesListView<VM>: View where VM: RecipesService {
+    @EnvironmentObject var recipesViewModel: VM
     
     var body: some View {
         List {
             ForEach(recipesViewModel.meals.sorted()) { meal in
                 NavigationLink {
-                    RecipeDetailView(meal: meal)
+                    RecipeDetailView<VM>(meal: meal)
                 } label: {
                     Text(meal.strMeal)
                 }
@@ -24,6 +24,7 @@ struct RecipesListView: View {
     }
 }
 
-//#Preview {
-//    RecipesListView()
-//}
+#Preview {
+    RecipesListView<MockRecipesViewModel>()
+        .environmentObject(MockRecipesViewModel())
+}

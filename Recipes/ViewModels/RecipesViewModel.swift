@@ -7,7 +7,13 @@
 
 import Foundation
 
-class RecipesViewModel: ObservableObject {
+protocol RecipesService: ObservableObject {
+    var meals: [Meal] { get }
+    func getMeals() async
+    func getMealDetail(by id: String) async throws -> MealDetail?
+}
+
+class RecipesViewModel: RecipesService {
     @Published private(set) var meals = [Meal]()
     
     private let apiClient: APIClient
@@ -39,4 +45,22 @@ class RecipesViewModel: ObservableObject {
             return nil
         }
     }
+}
+
+class MockRecipesViewModel: RecipesService {
+    
+    var meals: [Meal] = [
+        Meal(strMeal: "test 1", strMealThumb: "image 1", idMeal: "1"),
+        Meal(strMeal: "test 2", strMealThumb: "image 2", idMeal: "2")
+    ]
+    
+    func getMeals() async {
+        print("getting meals")
+    }
+    
+    func getMealDetail(by id: String) async throws -> MealDetail? {
+        return nil
+    }
+    
+    
 }

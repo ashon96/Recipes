@@ -8,14 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var recipesViewModel = RecipesViewModel()
+    @StateObject private var recipesViewModel: RecipesViewModel
+    
+    init(apiClient: APIClient) {
+        _recipesViewModel = StateObject(wrappedValue: RecipesViewModel(apiClient: apiClient))
+    }
 
     var body: some View {
         NavigationStack {
             if recipesViewModel.meals.isEmpty {
                 ProgressView()
             } else {
-                RecipesListView()
+                RecipesListView<RecipesViewModel>()
             }
         }
         .task {
@@ -26,5 +30,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(
+        apiClient: MockAPIClient()
+    )
 }
