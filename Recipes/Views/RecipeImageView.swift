@@ -25,6 +25,6 @@ struct RecipeImageView: View {
     }
 }
 
-//#Preview {
-//    RecipeImageView()
-//}
+#Preview {
+    RecipeImageView(imageLink: "https://www.themealdb.com//images//media//meals//tqtywx1468317395.jpg")
+}
